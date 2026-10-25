@@ -1,0 +1,77 @@
+import { _electron as electron } from 'playwright-core';
+import { electronTestOptions } from './electron-test-options.mjs';
+import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const output=path.resolve(process.env.SLANG_SCREENSHOTS || 'build/ide-locales/assets'); await mkdir(output,{recursive:true});
+const profile=await mkdtemp(path.resolve('build/locale-ui-'));
+let app;
+async function close() { await app.evaluate(({BrowserWindow})=>{for(const w of BrowserWindow.getAllWindows())w.destroy();}); await app.close(); }
+try {
+  app=await electron.launch(await electronTestOptions(profile));
+  let page=await app.firstWindow(); await page.waitForSelector('.monaco-editor .view-lines');
+  await page.waitForFunction(()=>document.querySelector('#tabs').textContent.includes('welcome.slang'));
+  const replace=async source=>{await page.locator('#editor .view-lines').click();await page.keyboard.press('ControlOrMeta+a');await page.keyboard.insertText(source);};
+  const openSource=async (name, source)=>{
+    const file=path.join(profile,name);await writeFile(file,source);
+    await app.evaluate(({dialog},file)=>{dialog.showOpenDialog=async()=>({canceled:false,filePaths:[file]});},file);
+    await page.locator('#open').click();
+    await page.waitForFunction(name=>document.querySelector('#tabs .selected').textContent.includes(name),name);
+  };
+  const editorShot=async name=>{
+    const bounds=await page.locator('#editor').boundingBox();
+    const last=await page.locator('#editor .view-line').last().boundingBox();
+    await page.screenshot({path:path.join(output,name),clip:{x:bounds.x,y:bounds.y,width:bounds.width,height:Math.min(bounds.height,last.y+last.height-bounds.y+12)}});
+  };
+  const toolbarShot=async name=>{
+    const size=await app.evaluate(({BrowserWindow})=>{const w=BrowserWindow.getAllWindows()[0];const old=w.getSize();w.setSize(1080,820);return old;});
+    await page.waitForTimeout(200);
+    await page.locator('.toolbar').screenshot({path:path.join(output,name)});
+    await app.evaluate(({BrowserWindow},size)=>BrowserWindow.getAllWindows()[0].setSize(...size),size);
+    await page.waitForTimeout(200);
+  };
+  const before=await page.locator('#editor .view-lines').innerText();
+  await page.locator('#language-locale').selectOption('no');
+  await page.waitForFunction(()=>document.querySelector('#run').textContent.includes('Kjør'));
+  assert.equal(await page.locator('#editor .view-lines').innerText(),before);
+  assert.equal(await page.locator('html').getAttribute('lang'),'nb');
+  await replace('bruk vindu\nvindu.'); await page.keyboard.press('Control+Space'); await page.waitForSelector('.suggest-widget.visible');
+  const suggestions=await page.locator('.suggest-widget.visible').innerText(); assert.match(suggestions,/knapp/); assert.doesNotMatch(suggestions,/button/);
+  await page.keyboard.press('Escape');
+  await replace('#no\nskriv<1 / 0>'); await page.locator('#run').click();
+  await page.waitForFunction(()=>document.querySelector('#console').textContent.includes('Kan ikke dele på null'));
+  await page.waitForFunction(()=>!document.querySelector('#debug').disabled);
+  await replace('#en\nprint<1 / 0>'); await page.locator('#run').click();
+  await page.waitForFunction(()=>document.querySelector('#console').textContent.includes('Cannot divide by zero'));
+  await page.waitForFunction(()=>!document.querySelector('#debug').disabled);
+  const src='#no\nbruk vindu som ui\nui.opprett<"Hei-appen", 480, 360>\nvar navn = ui.tekstfelt<"Navn", "Åse">\nvar melding = ui.etikett<"Klar!">\nfunk Hils <>:\n    melding.tekst = "Hei, " + navn.verdi\n.\nui.knapp<"Hils", Hils>\nui.kjør<>\n';
+  await openSource('hei-app.slang',src); await page.locator('#theme-mode').selectOption('light'); await page.locator('#theme-palette').selectOption('teal');
+  await page.locator('#run').click(); await page.waitForSelector('#canvas.visible');
+  const canvas=page.locator('#canvas'), bounds=await canvas.boundingBox();
+  await canvas.click({position:{x:100*bounds.width/480,y:230*bounds.height/360}});
+  await page.waitForTimeout(150);
+  await toolbarShot('toolbar-no.png');
+  await editorShot('editor-no.png');
+  await canvas.screenshot({path:path.join(output,'form-no.png')});
+  await page.locator('#close-canvas').click(); await page.waitForFunction(()=>!document.querySelector('#debug').disabled);
+  await page.locator('#language-locale').selectOption('en');
+  await openSource('motion.slang','#en\nuse graphics as g\nvar x as dec = 80\nwhile g.open<>:\n    if g.key_down<"right">:\n        x = x + 120 * g.seconds<>\n    .\n    g.background<"#18243A">\n    g.fill<"#8ED6C8">\n    g.circle<x, 160, 20>\n    g.present<>\n.\n');
+  await page.locator('#theme-mode').selectOption('dark'); await page.locator('#theme-palette').selectOption('blue');
+  await page.locator('#run').click(); await page.waitForSelector('#canvas.visible');
+  await toolbarShot('toolbar-en.png');
+  await editorShot('editor-en.png');
+  await canvas.screenshot({path:path.join(output,'motion-en.png')});
+  await page.locator('#stop').click(); await page.waitForFunction(()=>!document.querySelector('#debug').disabled);
+  await page.locator('#language-locale').selectOption('no');
+  await app.evaluate(({dialog})=>{dialog.showSaveDialog=async (_window,options)=>{globalThis.lastSave=options; return {canceled:true};};});
+  await page.locator('#save-as').click();
+  const dialog=await app.evaluate(()=>globalThis.lastSave); assert.equal(dialog.title,'Lagre som'); assert.equal(dialog.buttonLabel,'Lagre');
+  await close();
+  app=await electron.launch(await electronTestOptions(profile)); page=await app.firstWindow();
+  await page.waitForFunction(()=>document.querySelector('#tabs').textContent.includes('velkommen.slang'));
+  assert.equal(await page.locator('#language-locale').inputValue(),'no'); assert.match(await page.locator('#run').innerText(),/Kjør/);
+  await page.locator('#run').click(); await page.waitForFunction(()=>document.querySelector('#console').textContent.includes('Programmet er ferdig.'));
+  assert.match(await page.locator('#console').innerText(),/Hei, verden!/);
+  await close(); app=null;
+  console.log('Locale UI passed: Norwegian controls, completion filtering, unchanged source, directives, native form, dialogs, persistence and both screenshot sets.');
+} finally { if(app) await close().catch(()=>{}); }

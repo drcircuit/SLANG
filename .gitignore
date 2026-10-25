@@ -1,0 +1,22 @@
+node_modules/
+coverage/
+*.log
+build/
+dist/
+tmp/pdfs/
+scripts/curriculum/__pycache__/
+scripts/topics/__pycache__/
+
+# Teaching material is maintained outside this repository.
+/docs/curriculum/
+/docs/topics/
+/docs/quickstart/
+/examples/curriculum/
+/examples/topics/
+/examples/quickstart/
+/scripts/curriculum/
+/scripts/topics/
+/scripts/quickstart/
+/output/
+/laeringsmateriell/
+/SLANG-laeringsmateriell/

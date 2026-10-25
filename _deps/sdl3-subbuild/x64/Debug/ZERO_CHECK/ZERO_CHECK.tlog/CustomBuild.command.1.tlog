@@ -1,0 +1,10 @@
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\CB76F0BB14B4A7F8DC90DC181C9C2FF6\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild -BC:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,55 @@
+SLANG -- native interpreter and SDL graphics preview
+
+Extract the entire archive. Double-click SLANG.cmd on Windows to open
+the interactive console. No runtime, compiler, or package installation
+is needed to use this package.
+
+Try in the console:
+  var price = 19.95
+  price * 3
+  0.1 + 0.2
+
+Enter :help for help, :reset to clear the session, or :quit to exit.
+Ctrl+C interrupts executing code. Blocks end with a period on its own line.
+
+From a PowerShell terminal in the extracted directory:
+  .\bin\slang.exe run .\examples\first-program.slang
+  .\bin\slang.exe run .\examples\gjett.slang
+  .\bin\slang.exe run .\examples\modules\main.slang
+  .\bin\slang.exe run .\examples\graphics\drawing.slang
+  .\bin\slang.exe run .\examples\graphics\loop.slang
+  .\bin\slang.exe run .\examples\graphics\callback.slang
+  .\bin\slang.exe repl
+  .\bin\slang.exe --help
+
+The guessing game uses Norwegian keywords. Edit its secret number and
+let a friend play. The English and Norwegian examples run identically.
+
+Libraries use lib blocks, explicit public exports, and private-by-default
+declarations. Import a source file with use "maths.slang" as maths.
+Bundled console, numbers, and graphics libraries are available. See docs/modules.md.
+
+Graphics create a canvas automatically when you draw. The loop example uses
+arrow keys to move a sprite; Escape or the close button finishes the game.
+Callbacks are supported too. SDL is included in the executable. See
+docs/graphics.md for the API and examples/graphics/sprite-benchmark.slang
+for a local performance measurement. Third-party notices are in licenses/.
+
+The executable also works independently of this folder. Source filenames
+are relative to your terminal's current directory.
+
+This preview executes programs and enforces strong types at runtime.
+The check command still checks syntax only. Static type inference,
+bytecode compilation and plotting are not included yet. The Electron IDE is
+available in the separate, self-contained SLANG-IDE package.
+
+Arithmetic uses arbitrary-size integers and exact decimal +, -, and *.
+Division rounds to 28 decimal places with ties to even. See docs/runtime.md
+for detailed rules, builtins, initial semantics, and interpreter limits.
+
+The finished product will include the compiler, interactive interpreter,
+IDE with non-AI completion, standard libraries, and offline documentation.
+
+On macOS/Linux, run ./bin/slang repl or ./bin/slang run your-file.slang.
+Licenses: MIT for SLANG; CC0 for original graphics examples/assets.
+Third-party components retain their own licenses in licenses/.

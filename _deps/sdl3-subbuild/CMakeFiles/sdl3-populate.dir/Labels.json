@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/sdl3-populate"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/cb76f0bb14b4a7f8dc90dc181c9c2ff6/sdl3-populate.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/41e51a42f29ab0af5ffb92453c70218a/sdl3-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sdl3-populate"
+		],
+		"name" : "sdl3-populate"
+	}
+}

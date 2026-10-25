@@ -1,0 +1,17 @@
+{
+  "modules": {"konsoll":"console","tall":"numbers","tekster":"strings","lister":"lists","tilfeldig":"random","tid":"time","filer":"files","vindu":"window","grafikk":"graphics"},
+  "builtins": {"skriv":"print","les":"input","lengde":"length","legg_til":"append","fjern":"remove","avrund":"round","del":"divide","sjekk":"assert","feil":"error"},
+  "windowFields": {"tekst":"caption","aktiv":"enabled","verdi":"value","elementer":"items","valgte":"selected"},
+  "colors": {"svart":"black","hvit":"white","rød":"red","grønn":"green","blå":"blue","gul":"yellow","oransje":"orange","lilla":"purple","rosa":"pink","grå":"gray","cyan":"cyan","magenta":"magenta"},
+  "functions": {
+    "console": {"skriv":"print","les":"input"},
+    "numbers": {"avrund":"round","del":"divide","absolutt":"abs","minste":"min","største":"max","begrens":"clamp","rund_ned":"floor","rund_opp":"ceil","potens":"pow","kvadratrot":"sqrt","sum":"sum","gjennomsnitt":"mean","tolk":"parse","formater":"format"},
+    "strings": {"lengde":"length","inneholder":"contains","finn":"find","utsnitt":"slice","erstatt":"replace","del_opp":"split","sett_sammen":"join","trim":"trim","små_bokstaver":"lower","store_bokstaver":"upper"},
+    "lists": {"lengde":"length","legg_til":"append","fjern":"remove","inneholder":"contains","finn":"find","kopier":"copy","utsnitt":"slice","sorter":"sort","snu":"reverse"},
+    "random": {"frø":"seed","heltall":"integer","velg":"choice","bland":"shuffle"},
+    "time": {"sekunder":"seconds","vent":"sleep"},
+    "files": {"finnes":"exists","les":"read","skriv":"write","legg_til":"append"},
+    "window": {"opprett":"create","etikett":"label","tekstfelt":"input","knapp":"button","sjekkliste":"checklist","radiogruppe":"radio_group","listeboks":"listbox","komboboks":"combobox","kjør":"run","lukk":"close"},
+    "graphics": {"lerret":"canvas","åpen":"open","sekunder":"seconds","vis":"present","kjør":"run","lukk":"close","bilder_per_sekund":"fps","tast_nede":"key_down","bakgrunn":"background","fyll":"fill","linje":"line","rektangel":"rect","sirkel":"circle","bilde":"sprite","lagre":"save"}
+  }
+}

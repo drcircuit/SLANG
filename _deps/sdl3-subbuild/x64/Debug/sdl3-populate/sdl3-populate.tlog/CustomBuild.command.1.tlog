@@ -1,0 +1,150 @@
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/tmp/sdl3-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/verify-sdl3-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/extract-sdl3-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-UPDATE.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-update
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\04869D9E5096B2E85E35694A0FB8EE2F\SDL3-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\41E51A42F29AB0AF5FFB92453C70218A\SDL3-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/Debug/sdl3-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/Debug/sdl3-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKEFILES\CB76F0BB14B4A7F8DC90DC181C9C2FF6\SDL3-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ESPEN\ONEDRIVE\DOKUMENTER\CHATGPT\SLANG\_DEPS\SDL3-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild -BC:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild --check-stamp-file C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,27 @@
+import { readFile, writeFile, mkdir, mkdtemp, access } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { packageLayout } from './release-utils.mjs';
+const manifest = JSON.parse(await readFile('build/ide-package.json','utf8'));
+const layout = packageLayout(manifest.version,manifest.platform,manifest.arch);
+await mkdir('build',{recursive:true});
+const temporary = await mkdtemp(path.resolve('build/extracted-'));
+const destination = path.join(temporary,'Å lære SLANG'); await mkdir(destination);
+if (process.platform === 'win32') {
+  const quote = text => "'" + text.replaceAll("'","''") + "'";
+  execFileSync('powershell.exe',['-NoProfile','-NonInteractive','-Command',`$ErrorActionPreference = 'Stop'; Expand-Archive -LiteralPath ${quote(manifest.archive)} -DestinationPath ${quote(destination)}`],{stdio:'inherit'});
+} else if (process.platform === 'darwin') execFileSync('ditto',['-x','-k',manifest.archive,destination],{stdio:'inherit'});
+else execFileSync('tar',['-xzf',manifest.archive,'-C',destination],{stdio:'inherit'});
+const directory = path.join(destination,layout.name), app = path.join(directory,layout.resources,'app');
+if (process.platform === 'win32') execFileSync('icacls',[directory,'/grant','*S-1-15-2-1:(OI)(CI)(RX)'],{stdio:'pipe'});
+for (const file of ['LICENSE','THIRD-PARTY-NOTICES.md','examples/graphics/LICENSE','licenses/SDL3.txt','licenses/Monaco.txt','licenses/NotoSans-OFL.txt','licenses/stb_truetype.txt','docs/windows.md','examples/windows/english/club.slang','examples/windows/norsk/club.slang','dist/renderer.js']) await access(path.join(app,file));
+assert.match(await readFile(path.join(app,'LICENSE'),'utf8'),/MIT License/);
+assert.match(await readFile(path.join(app,'examples/graphics/LICENSE'),'utf8'),/CC0 1.0 Universal/);
+const environment = {...process.env};
+for (const name of Object.keys(environment)) if (name.toLowerCase() === 'path') delete environment[name];
+environment.PATH = process.platform === 'win32' ? path.join(process.env.SystemRoot,'System32') : '/usr/bin:/bin';
+const native = path.join(app,'bin',process.platform === 'win32' ? 'slang.exe' : 'slang');
+assert.match(execFileSync(native,['run',path.join(app,'examples/first-program.slang')],{env:environment,encoding:'utf8'}),/./);
+await writeFile('build/ide-package.json',JSON.stringify({...manifest,directory,executable:path.join(directory,layout.executable)},null,2)+'\n');
+console.log('Archive extracted; licenses and bundled interpreter verified. UI tests will now use this extracted copy.');

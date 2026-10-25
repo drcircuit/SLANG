@@ -1,0 +1,14 @@
+# Target labels
+ sdl3-populate
+# Source files and their labels
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/sdl3-populate
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/cb76f0bb14b4a7f8dc90dc181c9c2ff6/sdl3-populate.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/41e51a42f29ab0af5ffb92453c70218a/sdl3-populate-complete.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-build.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-configure.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-download.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-install.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-mkdir.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-patch.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-test.rule
+C:/Users/espen/OneDrive/Dokumenter/ChatGPT/SLANG/_deps/sdl3-subbuild/CMakeFiles/04869d9e5096b2e85e35694a0fb8ee2f/sdl3-populate-update.rule

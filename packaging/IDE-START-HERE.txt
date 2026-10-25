@@ -1,0 +1,55 @@
+SLANG IDE -- portable preview
+
+Extract the ENTIRE archive. Open SLANG.exe (Windows), SLANG.app (macOS),
+or the SLANG executable (Linux).
+No separate programming runtime is needed. Keep the application files together.
+The package includes Electron, Monaco, the native interpreter, SDL graphics,
+examples, and offline reference documentation. No first-run download is needed.
+
+Run the welcome program with the green Run button or F5.
+Open the graphics folder to try drawing.slang, loop.slang, or callback.slang.
+Click the canvas before using arrow keys or Escape in a game.
+The canvas keeps the last image after the program finishes.
+
+Use Mode and Theme at the top right for light or dark appearances in teal,
+pink, purple, blue, green, yellow, orange, or high contrast. Your choice is
+remembered. Theme changes do not change the colors your program draws.
+
+Run       F5          Run the current file, or continue when paused
+Stop      Shift+F5    Stop the program, including input and graphics loops
+Pause     F6          Pause / resume execution
+Debug     Ctrl+F5     Pause before the first executable statement
+Step      F11         Execute up to the next statement (steps into functions)
+
+Click the gutter beside a code line to toggle a breakpoint.
+Variables appear in the right panel when stopped at a statement.
+Use Ctrl+Space for ordinary, offline code completion. There is no AI completion.
+Ctrl+S saves; Ctrl+Shift+S saves as; Ctrl+N creates a file; Ctrl+O opens a file.
+
+Run uses the current editor text without saving over your source file.
+Save imported modules before running: imports use their saved contents.
+For an unsaved file, relative assets/imports start in the open folder.
+Program files are read-only while a run is active; Stop to edit again.
+
+Open folder selects your own project folder. New files can be saved anywhere
+using Save as. Unsaved edits are checked before closing a tab or the app.
+Settings/cache and temporary run snapshots use the normal user-data folder.
+
+On Windows, SLANG-console.cmd opens the persistent interactive console (REPL).
+On macOS/Linux, run ./slang repl from the extracted outer folder.
+The IDE console currently shows program output and accepts input<> responses.
+From a terminal, use slang.cmd run your-file.slang on Windows, or
+./slang run your-file.slang on macOS/Linux.
+
+See the paths at the top of this file for the CLI and offline documentation.
+Windows publisher signing and Apple notarization are not configured.
+The language/IDE use MIT; original graphics examples/assets use CC0.
+Dependency notices and both license texts are included.
+
+The debugger supports statement breakpoints, stepping into functions, and
+visible variable summaries. Step-over/out, watches, a full call stack, static
+type inference, and bytecode compilation remain future work. Syntax diagnostics
+are available while typing; type checks happen when a program runs.
+
+Platform CI tests run before release drafts are created. Clean-machine
+qualification, installers and publisher signing remain release work.

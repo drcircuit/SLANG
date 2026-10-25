@@ -1,0 +1,155 @@
+name: Build, test and package
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    name: ${{ matrix.platform }}-${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            platform: win32
+            arch: x64
+          - runner: ubuntu-22.04
+            platform: linux
+            arch: x64
+          - runner: macos-15-intel
+            platform: darwin
+            arch: x64
+          - runner: macos-15
+            platform: darwin
+            arch: arm64
+    env:
+      electron_config_cache: ${{ github.workspace }}/build/electron-cache
+      SLANG_TEST_PACKAGED: '1'
+      SLANG_IDE_MINIMAL_PATH: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install Linux build and desktop dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build pkg-config xvfb xauth \
+            libasound2-dev libpulse-dev libx11-dev libxext-dev libxrandr-dev \
+            libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
+            libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev \
+            libegl1-mesa-dev libwayland-dev libdecor-0-dev \
+            libgtk-3-0 libnss3 libatk-bridge2.0-0 libnotify4
+      - name: Install JavaScript dependencies
+        run: npm ci
+      - name: Install bundled Electron runtime
+        run: node node_modules/electron/install.js
+      - name: Validate version, licenses and release configuration
+        run: |
+          npm run release:check
+          node --test test/release.test.js
+      - name: Build, test and package Windows interpreter
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/build-native.ps1 -Package -VerifyParity
+      - name: Build, test and package Unix interpreter
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cmake -S . -B build/native-ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/native-ninja --parallel 3
+          ctest --test-dir build/native-ninja --output-on-failure
+          SLANG_NATIVE_EXE="$PWD/build/native-ninja/slang" node --test test/language.test.js
+          node scripts/verify-arithmetic.mjs build/native-ninja/slang
+          cpack --config build/native-ninja/CPackConfig.cmake -C Release -B dist
+      - name: Editor and protocol tests
+        run: npm run ide:test
+      - name: English and Norwegian showcase examples
+        run: npm run examples:test
+      - name: Build and package IDE
+        run: |
+          npm run ide:build
+          npm run ide:package
+      - name: Extract archive and verify included licenses and interpreter
+        run: node scripts/test-release-archive.mjs
+      - name: Test packaged IDE on Linux
+        if: runner.os == 'Linux'
+        run: |
+          xvfb-run -a npm run ide:smoke
+          xvfb-run -a npm run ide:themes
+      - name: Test packaged IDE on Windows and macOS
+        if: runner.os != 'Linux'
+        run: |
+          npm run ide:smoke
+          npm run ide:themes
+      - name: Upload tested archives
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: packages-${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            dist/*.zip
+            dist/*.tar.gz
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload UI screenshots for diagnosis
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: screenshots-${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            build/ide-smoke/*.png
+            build/ide-themes/*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
+  release:
+    name: Create draft release
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          pattern: packages-*
+          path: release-assets
+          merge-multiple: true
+      - name: Validate release and calculate checksums
+        run: |
+          node scripts/check-release.mjs
+          node scripts/checksums.mjs release-assets
+      - name: Create or update draft (never overwrite a published release)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: node scripts/draft-release.mjs release-assets

@@ -1,0 +1,12 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import aliases from '../src/standard-aliases.json' with { type: 'json' };
+const file = new URL('../docs/localization.md', import.meta.url);
+const marker = '<!-- GENERATED ALIAS TABLES -->';
+const table = entries => '| Engelsk | Norsk |\n| --- | --- |\n' + Object.entries(entries).map(([no,en]) => `| \`${en}\` | \`${no}\` |`).join('\n') + '\n';
+let generated = '\n\n## Innebygde funksjoner\n\n' + table(aliases.builtins);
+generated += '\n## Vindusegenskaper\n\n' + table(aliases.windowFields);
+generated += '\n## Fargenavn\n\nNorske og engelske navn kan brukes i `grafikk.fyll` / `graphics.fill` og `grafikk.bakgrunn` / `graphics.background`. Store og små bokstaver virker likt, også `RØD`, `BLÅ` og `GRÅ`. `grey` er også et engelsk navn for `grå`; `cyan` og `magenta` er like på begge språk. Hex-koder som `"#AABBCC"` fungerer som før. IDE-en foreslår fargenavn på valgt språk uten å endre eksisterende tekst i programmet.\n\n' + table(aliases.colors);
+generated += '\n## Standardbiblioteker\n\n' + table(aliases.modules);
+for (const [no,en] of Object.entries(aliases.modules)) generated += `\n### ${no} / ${en}\n\n` + table(aliases.functions[en]);
+generated += '\nTabellene genereres fra `src/standard-aliases.json`, som også brukes av IDE-en og native-bygget. Oppdater med `node scripts/update-localization-doc.mjs`.\n';
+writeFileSync(file, readFileSync(file,'utf8').split(marker)[0] + marker + generated);

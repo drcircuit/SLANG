@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>SLANG</title>
+  <link rel="stylesheet" href="renderer.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand"><span class="brand-mark">s.</span><div>SLANG<small>A place to make things.</small></div></div>
+    <div class="run-controls" aria-label="Program controls">
+      <button id="run" class="primary" title="Run / Continue (F5)"><span>▶</span> Run</button>
+      <button id="stop" disabled title="Stop (Shift+F5)"><span class="red">■</span> Stop</button>
+      <button id="pause" disabled title="Pause / Resume (F6)"><span>Ⅱ</span> Pause</button>
+      <button id="debug" title="Debug from the first statement (Ctrl+F5)"><span>◇</span> Debug</button>
+      <button id="step" disabled title="Step into the next statement (F11)"><span>↳</span> Step</button>
+    </div>
+    <div id="run-state" class="state"><i></i><span>Ready</span></div>
+    <div class="appearance" role="group" aria-label="Appearance">
+      <label>Language<select id="language-locale" aria-label="Language"><option value="en">English</option><option value="no">Norsk</option></select></label>
+      <label>Mode<select id="theme-mode" aria-label="Color mode"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>Theme<select id="theme-palette" aria-label="Color theme"></select></label>
+    </div>
+  </header>
+  <main id="workspace">
+    <aside class="files">
+      <div class="panel-title"><h2>FILES</h2><div class="small-actions"><button id="new" title="New file (Ctrl+N)" aria-label="New file">＋</button><button id="refresh" title="Refresh files" aria-label="Refresh files">↻</button></div></div>
+      <div class="file-actions"><button id="folder">Open folder</button><button id="open" title="Open file (Ctrl+O)">Open file</button></div>
+      <div id="folder-name"></div><nav id="tree" aria-label="Files"></nav>
+      <div class="file-footer"><span class="language-dot"></span> English + norsk <span id="version"></span></div>
+    </aside>
+    <div class="splitter vertical" id="file-split" role="separator" aria-label="Resize file browser" tabindex="0"></div>
+    <section class="editor-section">
+      <div class="editor-top"><div id="tabs" role="tablist"></div><button id="save" title="Save (Ctrl+S)">Save</button><button id="save-as" title="Save as (Ctrl+Shift+S)">Save as</button></div>
+      <div id="breadcrumb"></div>
+      <div id="editor" aria-label="SLANG code editor"></div>
+      <div class="splitter horizontal" id="console-split" role="separator" aria-label="Resize console" tabindex="0"></div>
+      <section class="console-section">
+        <div class="panel-title"><h2>CONSOLE <span id="console-status">Program output</span></h2><button id="clear-console">Clear</button></div>
+        <div id="console" role="log" aria-label="Program console" tabindex="0"><span class="muted">Your program’s output appears here. Try print&lt;"Hei, verden!"&gt;.</span></div>
+        <form id="input-form"><span>›</span><input id="console-input" aria-label="Console input" placeholder="Input becomes available when your program asks for it" disabled autocomplete="off"><button id="send-input" disabled>Send ↵</button><button id="eof" type="button" disabled title="End input">EOF</button></form>
+      </section>
+    </section>
+    <div class="splitter vertical" id="canvas-split" role="separator" aria-label="Resize canvas panel" tabindex="0"></div>
+    <aside class="output-section">
+      <div class="panel-title"><h2>CANVAS <span id="canvas-size">SDL graphics</span></h2><button id="close-canvas" disabled title="Close the program canvas">Close</button></div>
+      <div id="canvas-stage"><canvas id="canvas" width="640" height="480" tabindex="0" aria-label="Program canvas. Click to use the keyboard."></canvas><div id="canvas-empty"><span class="canvas-symbol">◯<i>＋</i></span><h3>Give your ideas a shape.</h3><p>Draw something or run an animation.<br>Your canvas will appear here.</p><button id="drawing-example">Try a drawing</button></div></div>
+      <div class="canvas-hint" id="canvas-hint">Click the canvas to send keyboard input</div>
+      <section id="debug-panel"><div class="panel-title"><h2>VARIABLES <span id="debug-location">Debugger</span></h2></div><div id="variables"><p class="empty-note">Click the gutter beside a line to set a breakpoint.<br>Start with Debug to step through your program.</p></div></section>
+      <details class="quick-help"><summary>A little help</summary><p><code>print&lt;"Hello"&gt;</code> writes to the console.</p><p><code>use graphics as g</code> brings in drawing tools.</p><p>Open a block with <code>:</code> and close it with <code>.</code></p><p><kbd>Ctrl</kbd> + <kbd>Space</kbd> for code suggestions.<br><kbd>F5</kbd> to run · <kbd>F11</kbd> to step.</p></details>
+    </aside>
+  </main>
+  <footer class="statusbar"><span id="file-status">SLANG</span><span id="syntax-status">Syntax checking ready</span><span id="cursor-status">Ln 1, Col 1</span><span>UTF-8</span></footer>
+  <div id="toast" role="alert" hidden></div>
+  <script type="module" src="renderer.js"></script>
+</body>
+</html>

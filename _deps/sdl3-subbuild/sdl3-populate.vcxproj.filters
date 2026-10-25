@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\04869d9e5096b2e85e35694a0fb8ee2f\sdl3-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\41e51a42f29ab0af5ffb92453c70218a\sdl3-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\cb76f0bb14b4a7f8dc90dc181c9c2ff6\sdl3-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\espen\OneDrive\Dokumenter\ChatGPT\SLANG\_deps\sdl3-subbuild\CMakeFiles\sdl3-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4E11D540-D7A4-3C1F-BE5B-96740E6DA25D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
